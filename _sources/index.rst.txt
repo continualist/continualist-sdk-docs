@@ -3,18 +3,66 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to continualist_sdk's documentation!
-============================================
+Continualist SDK
+================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
 
+What is Continualist SDK?
+-------------------------
 
-Indices and tables
-==================
+Are you tired of complex and time-consuming processes when it comes to 
+building and maintaining AI predictors? Continualist SDK is a developer kit 
+that transforms the way you develop AI, allowing you to obtain accurate 
+predictors and update their knowledge without requiring any specialized 
+AI-related knowledge.
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+See how you can build an image predictor and adapt it to new data in a matter of seconds: 
+`usage Google Colaboratory notebook <https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing>`_.
+The SDK leverages cutting-edge AutoML and Continual Learning algorithms to 
+efficiently update AI predictors. See a comparison between the standard 
+approaches used in the industry and the new solutions enabled by the 
+SDK: `comparison Google Colaboratory notebook <https://colab.research.google.com/drive/1I-9slaNYu5KbxL8f9Kkg5e3hFx_93Q5n?usp=sharing>`_.
+
+API
+===
+
+Data
+----
+
+.. py:function:: continualist_sdk.data.Data(kind=None)
+
+   Return a list of random ingredients as strings.
+
+   :param kind: Optional "kind" of ingredients.
+   :type kind: list[str] or None
+   :raise lumache.InvalidKindError: If the kind is invalid.
+   :return: The ingredients list.
+   :rtype: list[str]
+
+.. py:function:: continualist_sdk.data.split_mnist(kind=None)
+
+   Ciao.
+
+   :param kind: Optional "kind" of ingredients.
+   :type kind: list[str] or None
+   :raise lumache.InvalidKindError: If the kind is invalid.
+   :return: The ingredients list.
+   :rtype: list[str]
+
+
+Predictor
+---------
+
+.. py:function:: continualist_sdk.predictor.Predictor(kind=None)
+
+   Prova
+
+   :param kind: Optional "kind" of ingredients.
+   :type kind: list[str] or None
+   :raise lumache.InvalidKindError: If the kind is invalid.
+   :return: The ingredients list.
+   :rtype: list[str]

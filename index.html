@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to continualist_sdk’s documentation! &mdash; continualist_sdk 0.0.1 documentation</title>
+  <title>Continualist SDK &mdash; continualist_sdk 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,8 +42,22 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to continualist_sdk’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">Continualist SDK</a><ul>
+<li><a class="reference internal" href="#what-is-continualist-sdk">What is Continualist SDK?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#data">Data</a><ul>
+<li><a class="reference internal" href="#continualist_sdk.data.Data"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.data.split_mnist"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.split_mnist()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#predictor">Predictor</a><ul>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -60,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to continualist_sdk’s documentation!</li>
+      <li class="breadcrumb-item active">Continualist SDK</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -70,18 +84,93 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-continualist-sdk-s-documentation">
-<h1>Welcome to continualist_sdk’s documentation!<a class="headerlink" href="#welcome-to-continualist-sdk-s-documentation" title="Permalink to this heading"></a></h1>
+  <section id="continualist-sdk">
+<h1>Continualist SDK<a class="headerlink" href="#continualist-sdk" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<section id="what-is-continualist-sdk">
+<h2>What is Continualist SDK?<a class="headerlink" href="#what-is-continualist-sdk" title="Permalink to this heading"></a></h2>
+<p>Are you tired of complex and time-consuming processes when it comes to
+building and maintaining AI predictors? Continualist SDK is a developer kit
+that transforms the way you develop AI, allowing you to obtain accurate
+predictors and update their knowledge without requiring any specialized
+AI-related knowledge.</p>
+<p>See how you can build an image predictor and adapt it to new data in a matter of seconds:
+<a class="reference external" href="https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing">usage Google Colaboratory notebook</a>.
+The SDK leverages cutting-edge AutoML and Continual Learning algorithms to
+efficiently update AI predictors. See a comparison between the standard
+approaches used in the industry and the new solutions enabled by the
+SDK: <a class="reference external" href="https://colab.research.google.com/drive/1I-9slaNYu5KbxL8f9Kkg5e3hFx_93Q5n?usp=sharing">comparison Google Colaboratory notebook</a>.</p>
 </section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+</section>
+<section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="continualist_sdk.data.Data">
+<span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data" title="Permalink to this definition"></a></dt>
+<dd><p>Return a list of random ingredients as strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ingredients list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="continualist_sdk.data.split_mnist">
+<span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">split_mnist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.split_mnist" title="Permalink to this definition"></a></dt>
+<dd><p>Ciao.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ingredients list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="predictor">
+<h2>Predictor<a class="headerlink" href="#predictor" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor">
+<span class="sig-prename descclassname"><span class="pre">continualist_sdk.predictor.</span></span><span class="sig-name descname"><span class="pre">Predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor" title="Permalink to this definition"></a></dt>
+<dd><p>Prova</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ingredients list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 
 
