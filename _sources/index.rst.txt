@@ -1,24 +1,16 @@
-.. Continualist SDK documentation master file, created by
-   sphinx-quickstart on Thu Jun  8 13:32:16 2023.
+.. continualist_sdk documentation master file, created by
+   sphinx-quickstart on Thu Jun  8 16:31:02 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Continualist SDK's documentation!
+Welcome to continualist_sdk's documentation!
 ============================================
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
 
-.. py:function:: lumache.get_random_ingredients(kind=None)
-
-   Return a list of random ingredients as strings.
-
-   :param kind: Optional "kind" of ingredients.
-   :type kind: list[str] or None
-   :return: The ingredients list.
-   :rtype: list[str]
 
 Indices and tables
 ==================
