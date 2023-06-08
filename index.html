@@ -48,7 +48,10 @@
 </li>
 <li><a class="reference internal" href="#api">API</a><ul>
 <li><a class="reference internal" href="#data">Data</a><ul>
-<li><a class="reference internal" href="#continualist_sdk.data.Data"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.data.Data"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.Data</span></code></a><ul>
+<li><a class="reference internal" href="#continualist_sdk.data.Data.__init__"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.Data.__init__()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#continualist_sdk.data.split_mnist"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.split_mnist()</span></code></a></li>
 </ul>
 </li>
@@ -107,42 +110,50 @@ SDK: <a class="reference external" href="https://colab.research.google.com/drive
 <h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
 <section id="data">
 <h2>Data<a class="headerlink" href="#data" title="Permalink to this heading"></a></h2>
-<dl class="py function">
+<dl class="py class">
 <dt class="sig sig-object py" id="continualist_sdk.data.Data">
-<span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data" title="Permalink to this definition"></a></dt>
-<dd><p>Return a list of random ingredients as strings.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data" title="Permalink to this definition"></a></dt>
+<dd><p>A Continualist SDK data object.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="continualist_sdk.data.Data.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs a <cite>Data</cite> object from an input and a target tensor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The ingredients list.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[str]</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Input tensor.</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Target tensor.</p></li>
+</ul>
 </dd>
 </dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="continualist_sdk.data.split_mnist">
 <span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">split_mnist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.split_mnist" title="Permalink to this definition"></a></dt>
-<dd><p>Ciao.</p>
+<dd><p>Loads data from the SplitMNIST dataset.</p>
+<p>If <cite>train</cite> is True, the function returns a list of <cite>batches</cite>
+<a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a> objects
+representing the batches taken from the SplitMNIST train stream.
+If <cite>train</cite> is False, the function returns a single <cite>Data</cite> object
+that represents the whole test stream.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train</strong> (<em>bool</em>) – If true, the returned datasets are constructed from the train
+stream. If false, the test stream is used.</p></li>
+<li><p><strong>batches</strong> (<em>int</em>) – If set to true and <cite>train</cite> is false the function returns
+a single batch of data representing the whole test stream.</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Seed for reproducibility.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>Data</cite> object if train is True, a list of <cite>Data</cite> objects otherwise.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The ingredients list.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[str]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a>] or <a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

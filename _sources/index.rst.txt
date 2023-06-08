@@ -33,25 +33,40 @@ API
 Data
 ----
 
-.. py:function:: continualist_sdk.data.Data(kind=None)
+.. py:class:: continualist_sdk.data.Data(x: numpy.ndarray, y: numpy.ndarray)
 
-   Return a list of random ingredients as strings.
+   A Continualist SDK data object.
 
-   :param kind: Optional "kind" of ingredients.
-   :type kind: list[str] or None
-   :raise lumache.InvalidKindError: If the kind is invalid.
-   :return: The ingredients list.
-   :rtype: list[str]
+   .. py:function:: __init__(x: numpy.ndarray, y: numpy.ndarray)
+
+      Constructs a `Data` object from an input and a target tensor.
+
+      :param x: Input tensor.
+      :type x: numpy.ndarray
+      :param y: Target tensor.
+      :type y: numpy.ndarray
+
 
 .. py:function:: continualist_sdk.data.split_mnist(kind=None)
 
-   Ciao.
+   Loads data from the SplitMNIST dataset.
 
-   :param kind: Optional "kind" of ingredients.
-   :type kind: list[str] or None
-   :raise lumache.InvalidKindError: If the kind is invalid.
-   :return: The ingredients list.
-   :rtype: list[str]
+   If `train` is True, the function returns a list of `batches` 
+   :py:func:`continualist_sdk.data.Data` objects 
+   representing the batches taken from the SplitMNIST train stream.
+   If `train` is False, the function returns a single `Data` object
+   that represents the whole test stream.
+
+   :param train: If true, the returned datasets are constructed from the train
+                    stream. If false, the test stream is used.
+   :type train: bool
+   :param batches: If set to true and `train` is false the function returns
+                     a single batch of data representing the whole test stream.
+   :type batches: int
+   :param seed: Seed for reproducibility.
+   :type seed: int
+   :return: A `Data` object if train is True, a list of `Data` objects otherwise.
+   :rtype: list[:py:func:`continualist_sdk.data.Data`] or :py:func:`continualist_sdk.data.Data`
 
 
 Predictor
