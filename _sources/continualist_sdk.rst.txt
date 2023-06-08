@@ -1,0 +1,53 @@
+continualist\_sdk package
+=========================
+
+Submodules
+----------
+
+continualist\_sdk.data module
+-----------------------------
+
+.. automodule:: continualist_sdk.data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+continualist\_sdk.fit module
+----------------------------
+
+.. automodule:: continualist_sdk.fit
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+continualist\_sdk.predictor module
+----------------------------------
+
+.. automodule:: continualist_sdk.predictor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+continualist\_sdk.task module
+-----------------------------
+
+.. automodule:: continualist_sdk.task
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+continualist\_sdk.utils module
+------------------------------
+
+.. automodule:: continualist_sdk.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: continualist_sdk
+   :members:
+   :undoc-members:
+   :show-inheritance:
