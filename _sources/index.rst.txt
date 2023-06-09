@@ -106,7 +106,7 @@ Predictor
 
 .. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', hpo_each_batch: bool = True)
 
-   A Continualist SDK predictor. After initialization, 
+   A Continualist SDK predictor.
 
    .. py:function:: __init__(self, strategy_type: str = 'replay', hpo_each_batch: bool = True)
 
@@ -135,7 +135,7 @@ Predictor
 
          Predicts new data.
 
-         :return: A tuple `(inputs, predictions, metric)`
+         :return: A tuple `(inputs, predictions, metric)`.
          :rtype: Tuple[numpy.ndarray, numpy.ndarray, float]
 
 
