@@ -20,8 +20,6 @@ that transforms the way you develop AI, allowing you to obtain accurate
 predictors and update their knowledge without requiring any specialized 
 AI-related knowledge.
 
-Creating a model and adapting it to new unseen data is as simple as:
-
 .. code-block:: python
 
    # Create the predictor and fit it by specifying data and task
