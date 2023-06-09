@@ -64,10 +64,13 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#predictor">Predictor</a><ul>
-<li><a class="reference internal" href="#init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
-<li><a class="reference internal" href="#fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
-<li><a class="reference internal" href="#adapt"><code class="docutils literal notranslate"><span class="pre">adapt()</span></code></a></li>
-<li><a class="reference internal" href="#predict"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor</span></code></a><ul>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor.__init__"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor.fit"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor.fit()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor.adapt"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor.adapt()</span></code></a></li>
+<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor.predict"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor.predict()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,19 +112,18 @@ building and maintaining AI predictors? Continualist SDK is a developer kit
 that transforms the way you develop AI, allowing you to obtain accurate
 predictors and update their knowledge without requiring any specialized
 AI-related knowledge.</p>
-<p>Creating a model and adapting it to new unseen data is as simple as:
-.. code-block:: python</p>
-<blockquote>
-<div><p># Create the predictor and fit it by specifying data and task
-predictor = Predictor()
-predictor.fit(data, task)
-…
-# Predict new data and obtain predictions that can be immediately used in your application
-predictor.predict(data)
-…
-# Efficiently adapt the predictor to new data
-predictor.adapt(data)</p>
-</div></blockquote>
+<p>Creating a model and adapting it to new unseen data is as simple as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the predictor and fit it by specifying data and task</span>
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">Predictor</span><span class="p">()</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="c1"># Predict new data and obtain predictions that can be immediately used in your application</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="c1"># Efficiently adapt the predictor to new data</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="try-it-yourself">
 <h2>Try it Yourself<a class="headerlink" href="#try-it-yourself" title="Permalink to this heading"></a></h2>
@@ -217,14 +219,12 @@ used with the <cite>Predictor</cite> API.</p>
 <section id="predictor">
 <h2>Predictor<a class="headerlink" href="#predictor" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">continualist_sdk.predictor.Predictor(strategy_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'replay',</span></span></dt>
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">hpo_each_batch:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True)</span></span></dt>
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">continualist_sdk.predictor.</span></span><span class="sig-name descname"><span class="pre">Predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor" title="Permalink to this definition"></a></dt>
 <dd><p>A Continualist SDK predictor. After initialization,</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#init__" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor.__init__" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -238,8 +238,8 @@ be executed for each adaptation step.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.task.Task" title="continualist_sdk.task.Task"><span class="pre">continualist_sdk.task.Task</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fit" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.task.Task" title="continualist_sdk.task.Task"><span class="pre">continualist_sdk.task.Task</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor.fit" title="Permalink to this definition"></a></dt>
 <dd><p>Fits the predictor to the specified data and task.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -253,8 +253,8 @@ process.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="adapt">
-<span class="sig-name descname"><span class="pre">adapt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adapt" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor.adapt">
+<span class="sig-name descname"><span class="pre">adapt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor.adapt" title="Permalink to this definition"></a></dt>
 <dd><p>Adapts a fitted predictor to the specified data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -268,8 +268,8 @@ process.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#predict" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor.predict" title="Permalink to this definition"></a></dt>
 <dd><p>Predicts new data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>

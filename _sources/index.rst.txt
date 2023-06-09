@@ -21,6 +21,7 @@ predictors and update their knowledge without requiring any specialized
 AI-related knowledge.
 
 Creating a model and adapting it to new unseen data is as simple as:
+
 .. code-block:: python
 
    # Create the predictor and fit it by specifying data and task
@@ -105,8 +106,7 @@ Task
 Predictor
 ---------
 
-.. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', 
-      hpo_each_batch: bool = True)
+.. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', hpo_each_batch: bool = True)
 
    A Continualist SDK predictor. After initialization, 
 
