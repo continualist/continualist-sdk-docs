@@ -20,18 +20,22 @@ that transforms the way you develop AI, allowing you to obtain accurate
 predictors and update their knowledge without requiring any specialized 
 AI-related knowledge.
 
-
+Creating a model and adapting it to new unseen data is as simple as:
 .. code-block:: python
 
-   # Create the predictor and fit it by specifying the data and a task
+   # Create the predictor and fit it by specifying data and task
    predictor = Predictor()
    predictor.fit(data, task)
    ...
-   # Predict new data obtaining predictions and metrics
+   # Predict new data and obtain predictions that can be immediately used in your application
    predictor.predict(data)
    ...
-   # Efficiently adapt the predictor to new unseen data
+   # Efficiently adapt the predictor to new data
    predictor.adapt(data)
+
+
+Try it Yourself
+---------------
 
 See how you can build an image predictor and adapt it to new data in a matter of seconds: 
 `usage Google Colaboratory notebook <https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing>`_.
@@ -39,7 +43,8 @@ See how you can build an image predictor and adapt it to new data in a matter of
 Because of the intrinsic limitations of current AI methodologies, creating and maintaining
 AI predictors is particularly costly and inefficient.
 To avoid that, the SDK leverages cutting-edge AutoML and Continual Learning algorithms to 
-efficiently build AI predictors and update their knowledge. See a comparison between the standard 
+efficiently build AI predictors and update their knowledge.
+See a comparison between the standard 
 approaches used in the industry and the new solutions enabled by the 
 SDK: `comparison Google Colaboratory notebook <https://colab.research.google.com/drive/1I-9slaNYu5KbxL8f9Kkg5e3hFx_93Q5n?usp=sharing>`_.
 
@@ -101,7 +106,7 @@ Predictor
 ---------
 
 .. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', 
-   hpo_each_batch: bool = True)
+      hpo_each_batch: bool = True)
 
    A Continualist SDK predictor. After initialization, 
 
@@ -132,10 +137,7 @@ Predictor
 
          Predicts new data.
 
-         :return: A tuple `(inputs, predictions, metric)`:
-            - inputs (numpy.ndarray): the input tensor.
-            - predictions (numpy.ndarray): tensor that contains predictions output by the predictor.
-            - metric (float): an accuracy score computed by comparing the predictions and the ground thruths.
+         :return: A tuple `(inputs, predictions, metric)`
          :rtype: Tuple[numpy.ndarray, numpy.ndarray, float]
 
 
