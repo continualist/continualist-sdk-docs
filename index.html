@@ -55,8 +55,18 @@
 <li><a class="reference internal" href="#continualist_sdk.data.split_mnist"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.data.split_mnist()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#task">Task</a><ul>
+<li><a class="reference internal" href="#continualist_sdk.task.Task"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.task.Task</span></code></a><ul>
+<li><a class="reference internal" href="#continualist_sdk.task.Task.__init__"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.task.Task.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#predictor">Predictor</a><ul>
-<li><a class="reference internal" href="#continualist_sdk.predictor.Predictor"><code class="docutils literal notranslate"><span class="pre">continualist_sdk.predictor.Predictor()</span></code></a></li>
+<li><a class="reference internal" href="#init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li><a class="reference internal" href="#fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li><a class="reference internal" href="#adapt"><code class="docutils literal notranslate"><span class="pre">adapt()</span></code></a></li>
+<li><a class="reference internal" href="#predict"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -98,10 +108,23 @@ building and maintaining AI predictors? Continualist SDK is a developer kit
 that transforms the way you develop AI, allowing you to obtain accurate
 predictors and update their knowledge without requiring any specialized
 AI-related knowledge.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the predictor and fit it by specifying the data and a task</span>
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">Predictor</span><span class="p">()</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="c1"># Predict new data obtaining predictions and metrics</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="c1"># Efficiently adapt the predictor to new unseen data</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>See how you can build an image predictor and adapt it to new data in a matter of seconds:
-<a class="reference external" href="https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing">usage Google Colaboratory notebook</a>.
-The SDK leverages cutting-edge AutoML and Continual Learning algorithms to
-efficiently update AI predictors. See a comparison between the standard
+<a class="reference external" href="https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing">usage Google Colaboratory notebook</a>.</p>
+<p>Because of the intrinsic limitations of current AI methodologies, creating and maintaining
+AI predictors is particularly costly and inefficient.
+To avoid that, the SDK leverages cutting-edge AutoML and Continual Learning algorithms to
+efficiently build AI predictors and update their knowledge. See a comparison between the standard
 approaches used in the industry and the new solutions enabled by the
 SDK: <a class="reference external" href="https://colab.research.google.com/drive/1I-9slaNYu5KbxL8f9Kkg5e3hFx_93Q5n?usp=sharing">comparison Google Colaboratory notebook</a>.</p>
 </section>
@@ -113,7 +136,8 @@ SDK: <a class="reference external" href="https://colab.research.google.com/drive
 <dl class="py class">
 <dt class="sig sig-object py" id="continualist_sdk.data.Data">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data" title="Permalink to this definition"></a></dt>
-<dd><p>A Continualist SDK data object.</p>
+<dd><p>Continualist SDK’s data class. Data must be specified in this format to be
+used with the <cite>Predictor</cite> API.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="continualist_sdk.data.Data.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.Data.__init__" title="Permalink to this definition"></a></dt>
@@ -121,8 +145,8 @@ SDK: <a class="reference external" href="https://colab.research.google.com/drive
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Input tensor.</p></li>
-<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Target tensor.</p></li>
+<li><p><strong>x</strong> – Input tensor.</p></li>
+<li><p><strong>y</strong> – Target tensor.</p></li>
 </ul>
 </dd>
 </dl>
@@ -132,21 +156,22 @@ SDK: <a class="reference external" href="https://colab.research.google.com/drive
 
 <dl class="py function">
 <dt class="sig sig-object py" id="continualist_sdk.data.split_mnist">
-<span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">split_mnist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.split_mnist" title="Permalink to this definition"></a></dt>
-<dd><p>Loads data from the SplitMNIST dataset.</p>
+<span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">split_mnist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.split_mnist" title="Permalink to this definition"></a></dt>
+<dd><p>Loads data from the SplitMNIST dataset. This gives a quick way to obtain
+meaningful data that can be used with the SDK.</p>
 <p>If <cite>train</cite> is True, the function returns a list of <cite>batches</cite>
 <a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a> objects
 representing the batches taken from the SplitMNIST train stream.
 If <cite>train</cite> is False, the function returns a single <cite>Data</cite> object
-that represents the whole test stream.</p>
+representing the whole test stream.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>train</strong> (<em>bool</em>) – If true, the returned datasets are constructed from the train
+<li><p><strong>train</strong> – If true, the returned datasets are constructed from the train
 stream. If false, the test stream is used.</p></li>
-<li><p><strong>batches</strong> (<em>int</em>) – If set to true and <cite>train</cite> is false the function returns
+<li><p><strong>batches</strong> – If set to true and <cite>train</cite> is false the function returns
 a single batch of data representing the whole test stream.</p></li>
-<li><p><strong>seed</strong> (<em>int</em>) – Seed for reproducibility.</p></li>
+<li><p><strong>seed</strong> – Seed for reproducibility.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -159,26 +184,99 @@ a single batch of data representing the whole test stream.</p></li>
 </dd></dl>
 
 </section>
-<section id="predictor">
-<h2>Predictor<a class="headerlink" href="#predictor" title="Permalink to this heading"></a></h2>
+<section id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="continualist_sdk.task.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">continualist_sdk.task.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'images'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.task.Task" title="Permalink to this definition"></a></dt>
+<dd><p>Continualist SDK’s task class. Tasks must be specified in this format to be
+used with the <cite>Predictor</cite> API.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor">
-<span class="sig-prename descclassname"><span class="pre">continualist_sdk.predictor.</span></span><span class="sig-name descname"><span class="pre">Predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor" title="Permalink to this definition"></a></dt>
-<dd><p>Prova</p>
-<dl class="field-list simple">
+<dt class="sig sig-object py" id="continualist_sdk.task.Task.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'images'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.task.Task.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>lumache.InvalidKindError</strong> – If the kind is invalid.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The ingredients list.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[str]</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Defines the task type. Possible choices: <cite>‘classification’</cite>.</p></li>
+<li><p><strong>data_type</strong> – Defines the data type used in the task. Possible choices: <cite>‘images’</cite>.</p></li>
+</ul>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="predictor">
+<h2>Predictor<a class="headerlink" href="#predictor" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">continualist_sdk.predictor.Predictor(strategy_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'replay',</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">hpo_each_batch:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True)</span></span></dt>
+<dd><p>A Continualist SDK predictor. After initialization,</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>strategy_type</strong> – Specifies the strategy used by the predictor in the
+adaptation steps. Possible choices: <cite>‘replay’, ‘cumulative’</cite>.</p></li>
+<li><p><strong>hpo_each_batch</strong> – Specifies whether hyperparameter optimization must
+be executed for each adaptation step.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.task.Task" title="continualist_sdk.task.Task"><span class="pre">continualist_sdk.task.Task</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fit" title="Permalink to this definition"></a></dt>
+<dd><p>Fits the predictor to the specified data and task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing information about the fitting
+process.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="adapt">
+<span class="sig-name descname"><span class="pre">adapt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adapt" title="Permalink to this definition"></a></dt>
+<dd><p>Adapts a fitted predictor to the specified data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing information about the adaptation
+process.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><span class="pre">continualist_sdk.data.Data</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predicts new data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple <cite>(inputs, predictions, metric)</cite>:
+- inputs (numpy.ndarray): the input tensor.
+- predictions (numpy.ndarray): tensor that contains predictions output by the predictor.
+- metric (float): an accuracy score computed by comparing the predictions and the ground thruths.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple[numpy.ndarray, numpy.ndarray, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>

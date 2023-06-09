@@ -20,12 +20,29 @@ that transforms the way you develop AI, allowing you to obtain accurate
 predictors and update their knowledge without requiring any specialized 
 AI-related knowledge.
 
+
+.. code-block:: python
+
+   # Create the predictor and fit it by specifying the data and a task
+   predictor = Predictor()
+   predictor.fit(data, task)
+   ...
+   # Predict new data obtaining predictions and metrics
+   predictor.predict(data)
+   ...
+   # Efficiently adapt the predictor to new unseen data
+   predictor.adapt(data)
+
 See how you can build an image predictor and adapt it to new data in a matter of seconds: 
 `usage Google Colaboratory notebook <https://colab.research.google.com/drive/1BA-3Cqv8tP5eslaaMUT7v-MFhbu1AkBy?usp=sharing>`_.
-The SDK leverages cutting-edge AutoML and Continual Learning algorithms to 
-efficiently update AI predictors. See a comparison between the standard 
+
+Because of the intrinsic limitations of current AI methodologies, creating and maintaining
+AI predictors is particularly costly and inefficient.
+To avoid that, the SDK leverages cutting-edge AutoML and Continual Learning algorithms to 
+efficiently build AI predictors and update their knowledge. See a comparison between the standard 
 approaches used in the industry and the new solutions enabled by the 
 SDK: `comparison Google Colaboratory notebook <https://colab.research.google.com/drive/1I-9slaNYu5KbxL8f9Kkg5e3hFx_93Q5n?usp=sharing>`_.
+
 
 API
 ===
@@ -35,49 +52,90 @@ Data
 
 .. py:class:: continualist_sdk.data.Data(x: numpy.ndarray, y: numpy.ndarray)
 
-   A Continualist SDK data object.
+   Continualist SDK's data class. Data must be specified in this format to be
+   used with the `Predictor` API.
 
    .. py:function:: __init__(x: numpy.ndarray, y: numpy.ndarray)
 
       Constructs a `Data` object from an input and a target tensor.
 
       :param x: Input tensor.
-      :type x: numpy.ndarray
       :param y: Target tensor.
-      :type y: numpy.ndarray
 
 
-.. py:function:: continualist_sdk.data.split_mnist(kind=None)
+.. py:function:: continualist_sdk.data.split_mnist(train: bool, batches: int = 5, seed: Optional[int] = None)
 
-   Loads data from the SplitMNIST dataset.
+   Loads data from the SplitMNIST dataset. This gives a quick way to obtain
+   meaningful data that can be used with the SDK.
 
    If `train` is True, the function returns a list of `batches` 
    :py:func:`continualist_sdk.data.Data` objects 
    representing the batches taken from the SplitMNIST train stream.
    If `train` is False, the function returns a single `Data` object
-   that represents the whole test stream.
+   representing the whole test stream.
 
    :param train: If true, the returned datasets are constructed from the train
                     stream. If false, the test stream is used.
-   :type train: bool
    :param batches: If set to true and `train` is false the function returns
                      a single batch of data representing the whole test stream.
-   :type batches: int
    :param seed: Seed for reproducibility.
-   :type seed: int
    :return: A `Data` object if train is True, a list of `Data` objects otherwise.
    :rtype: list[:py:func:`continualist_sdk.data.Data`] or :py:func:`continualist_sdk.data.Data`
+
+
+Task
+----
+
+.. py:class:: continualist_sdk.task.Task(type: str = 'classification', data_type: str = 'images')
+
+   Continualist SDK's task class. Tasks must be specified in this format to be
+   used with the `Predictor` API.
+   
+   .. py:function:: __init__(self, type: str = 'classification', data_type: str = 'images')
+
+      :param type: Defines the task type. Possible choices: `'classification'`.
+      :param data_type: Defines the data type used in the task. Possible choices: `'images'`.
 
 
 Predictor
 ---------
 
-.. py:function:: continualist_sdk.predictor.Predictor(kind=None)
+.. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', 
+   hpo_each_batch: bool = True)
 
-   Prova
+   A Continualist SDK predictor. After initialization, 
 
-   :param kind: Optional "kind" of ingredients.
-   :type kind: list[str] or None
-   :raise lumache.InvalidKindError: If the kind is invalid.
-   :return: The ingredients list.
-   :rtype: list[str]
+   .. py:function:: __init__(self, strategy_type: str = 'replay', hpo_each_batch: bool = True)
+
+      :param strategy_type: Specifies the strategy used by the predictor in the
+         adaptation steps. Possible choices: `'replay', 'cumulative'`.
+      :param hpo_each_batch: Specifies whether hyperparameter optimization must
+         be executed for each adaptation step.
+
+   .. py:function:: fit(self, data: continualist_sdk.data.Data, task: continualist_sdk.task.Task)
+
+         Fits the predictor to the specified data and task.
+
+         :return: A dictionary containing information about the fitting
+            process.
+         :rtype: dict
+
+   .. py:function:: adapt(self, data: continualist_sdk.data.Data)
+
+         Adapts a fitted predictor to the specified data.
+
+         :return: A dictionary containing information about the adaptation
+            process.
+         :rtype: dict
+
+   .. py:function:: predict(self, data: continualist_sdk.data.Data)
+
+         Predicts new data.
+
+         :return: A tuple `(inputs, predictions, metric)`:
+            - inputs (numpy.ndarray): the input tensor.
+            - predictions (numpy.ndarray): tensor that contains predictions output by the predictor.
+            - metric (float): an accuracy score computed by comparing the predictions and the ground thruths.
+         :rtype: Tuple[numpy.ndarray, numpy.ndarray, float]
+
+
