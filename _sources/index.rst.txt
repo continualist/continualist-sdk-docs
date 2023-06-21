@@ -69,22 +69,16 @@ Data
 
 .. py:function:: continualist_sdk.data.split_mnist(train: bool, batches: int = 5, seed: Optional[int] = None)
 
-   Loads data from the SplitMNIST dataset. This gives a quick way to obtain
-   meaningful data that can be used with the SDK.
-
-   If `train` is True, the function returns a list of `batches` 
-   :py:func:`continualist_sdk.data.Data` objects 
-   representing the batches taken from the SplitMNIST train stream.
-   If `train` is False, the function returns a single `Data` object
-   representing the whole test stream.
+   Loads SDK-compatible data from the SplitMNIST dataset. This gives a quick way 
+   to obtain meaningful data that can be used with the SDK.
 
    :param train: If true, the returned datasets are constructed from the train
                     stream. If false, the test stream is used.
-   :param batches: If set to true and `train` is false the function returns
-                     a single batch of data representing the whole test stream.
+   :param batches: If `train` is True, this parameter specifies the number of 
+                   batches into which the train stream will be divided.
    :param seed: Seed for reproducibility.
-   :return: A `Data` object if train is True, a list of `Data` objects otherwise.
-   :rtype: list[:py:func:`continualist_sdk.data.Data`] or :py:func:`continualist_sdk.data.Data`
+   :return: A `Data` object if train is False, a list of `Data` objects otherwise.
+   :rtype: :py:func:`continualist_sdk.data.Data` or list[:py:func:`continualist_sdk.data.Data`]
 
 
 Task
@@ -106,7 +100,7 @@ Predictor
 
 .. py:class:: continualist_sdk.predictor.Predictor(strategy_type: str = 'replay', hpo_each_batch: bool = True)
 
-   A Continualist SDK predictor.
+   Continualist SDK predictor.
 
    .. py:function:: __init__(self, strategy_type: str = 'replay', hpo_each_batch: bool = True)
 

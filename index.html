@@ -165,28 +165,23 @@ used with the <cite>Predictor</cite> API.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="continualist_sdk.data.split_mnist">
 <span class="sig-prename descclassname"><span class="pre">continualist_sdk.data.</span></span><span class="sig-name descname"><span class="pre">split_mnist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.data.split_mnist" title="Permalink to this definition"></a></dt>
-<dd><p>Loads data from the SplitMNIST dataset. This gives a quick way to obtain
-meaningful data that can be used with the SDK.</p>
-<p>If <cite>train</cite> is True, the function returns a list of <cite>batches</cite>
-<a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a> objects
-representing the batches taken from the SplitMNIST train stream.
-If <cite>train</cite> is False, the function returns a single <cite>Data</cite> object
-representing the whole test stream.</p>
+<dd><p>Loads SDK-compatible data from the SplitMNIST dataset. This gives a quick way
+to obtain meaningful data that can be used with the SDK.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>train</strong> – If true, the returned datasets are constructed from the train
 stream. If false, the test stream is used.</p></li>
-<li><p><strong>batches</strong> – If set to true and <cite>train</cite> is false the function returns
-a single batch of data representing the whole test stream.</p></li>
+<li><p><strong>batches</strong> – If <cite>train</cite> is True, this parameter specifies the number of
+batches into which the train stream will be divided.</p></li>
 <li><p><strong>seed</strong> – Seed for reproducibility.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A <cite>Data</cite> object if train is True, a list of <cite>Data</cite> objects otherwise.</p>
+<dd class="field-even"><p>A <cite>Data</cite> object if train is False, a list of <cite>Data</cite> objects otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[<a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a>] or <a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a> or list[<a class="reference internal" href="#continualist_sdk.data.Data" title="continualist_sdk.data.Data"><code class="xref py py-func docutils literal notranslate"><span class="pre">continualist_sdk.data.Data()</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -220,7 +215,7 @@ used with the <cite>Predictor</cite> API.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">continualist_sdk.predictor.</span></span><span class="sig-name descname"><span class="pre">Predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor" title="Permalink to this definition"></a></dt>
-<dd><p>A Continualist SDK predictor.</p>
+<dd><p>Continualist SDK predictor.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="continualist_sdk.predictor.Predictor.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'replay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hpo_each_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#continualist_sdk.predictor.Predictor.__init__" title="Permalink to this definition"></a></dt>
